@@ -38,3 +38,10 @@ mysql> describe AddressBook;
 | Email     | varchar(75)  | YES  |     | NULL    |       |
 +-----------+--------------+------+-----+---------+-------+
 8 rows in set (0.02 sec)
+
+UC-3_Insert into database
+
+mysql> insert into AddressBook values("Ajay","Dha","Panvel","Panvel","Mah",123455,4356789,"ajay@.com"),
+                                     ("vijay","Dha","Thane","Thane","Mah",345678,76894028,"vijay@.com");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
