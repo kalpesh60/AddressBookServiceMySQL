@@ -20,3 +20,21 @@ mysql> show databases;
 
 mysql> use AddressBookService;
 Database changed
+
+mysql> create table AddressBook(FirstName varchar(75),LastName varchar(75),Address varchar(125),City varchar(75),State varchar(75),Zip int,PhoneNo int,Email varchar(75));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe AddressBook;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| FirstName | varchar(75)  | YES  |     | NULL    |       |
+| LastName  | varchar(75)  | YES  |     | NULL    |       |
+| Address   | varchar(125) | YES  |     | NULL    |       |
+| City      | varchar(75)  | YES  |     | NULL    |       |
+| State     | varchar(75)  | YES  |     | NULL    |       |
+| Zip       | int          | YES  |     | NULL    |       |
+| PhoneNo   | int          | YES  |     | NULL    |       |
+| Email     | varchar(75)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
