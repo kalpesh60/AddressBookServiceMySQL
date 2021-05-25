@@ -171,3 +171,31 @@ mysql> select * from AddressBook;
 | vijay     | Dha      | Thane       | Thane  | Mah   | 345678 | 76894028 | vijay@.com  | Friend |
 +-----------+----------+-------------+--------+-------+--------+----------+-------------+--------+
 3 rows in set (0.00 sec)
+
+UC-10_Count by Type 
+
+mysql> select count(FirstName) from AddressBook group by Type = "Family";
++------------------+
+| count(FirstName) |
++------------------+
+|                2 |
+|                1 |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select Type,count(Type) from AddressBook where Type = "Family" group by Type;
++--------+-------------+
+| Type   | count(Type) |
++--------+-------------+
+| Family |           2 |
++--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select Type,count(Type) from AddressBook group by Type;
++--------+-------------+
+| Type   | count(Type) |
++--------+-------------+
+| Family |           2 |
+| Friend |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
