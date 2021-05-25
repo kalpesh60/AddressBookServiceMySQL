@@ -122,3 +122,13 @@ mysql> select * from AddressBook where City = "Panvel" Or State = "Mah";
 | vijay     | Dha      | Thane       | Thane  | Mah   | 345678 | 76894028 | vijay@.com  |
 +-----------+----------+-------------+--------+-------+--------+----------+-------------+
 3 rows in set (0.00 sec)
+
+UC-6_Size of Addressbook With City or State 
+
+mysql> select count(City And State) from AddressBook;
++-----------------------+
+| count(City And State) |
++-----------------------+
+|                     3 |
++-----------------------+
+1 row in set, 3 warnings (0.00 sec)
