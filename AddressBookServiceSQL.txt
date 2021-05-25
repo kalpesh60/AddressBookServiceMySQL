@@ -91,3 +91,34 @@ mysql> select * from Addressbook;
 | Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 | 4356789 | ajay@.com |
 +-----------+----------+-------------+--------+-------+--------+---------+-----------+
 1 row in set (0.00 sec)
+
+UC-6_Retrive contact With City or State 
+
+mysql> select * from Addressbook;
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+| FirstName | LastName | Address     | City   | State | Zip    | PhoneNo  | Email       |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+| Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 |  4356789 | ajay@.com   |
+| Sanjay    | Dha      | Panvel      | Panvel | Mah   | 123785 |   456789 | sanjay@.com |
+| vijay     | Dha      | Thane       | Thane  | Mah   | 345678 | 76894028 | vijay@.com  |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from AddressBook where City = "Panvel" And State = "Mah";
++-----------+----------+-------------+--------+-------+--------+---------+-------------+
+| FirstName | LastName | Address     | City   | State | Zip    | PhoneNo | Email       |
++-----------+----------+-------------+--------+-------+--------+---------+-------------+
+| Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 | 4356789 | ajay@.com   |
+| Sanjay    | Dha      | Panvel      | Panvel | Mah   | 123785 |  456789 | sanjay@.com |
++-----------+----------+-------------+--------+-------+--------+---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from AddressBook where City = "Panvel" Or State = "Mah";
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+| FirstName | LastName | Address     | City   | State | Zip    | PhoneNo  | Email       |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+| Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 |  4356789 | ajay@.com   |
+| Sanjay    | Dha      | Panvel      | Panvel | Mah   | 123785 |   456789 | sanjay@.com |
+| vijay     | Dha      | Thane       | Thane  | Mah   | 345678 | 76894028 | vijay@.com  |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+
+3 rows in set (0.00 sec)
