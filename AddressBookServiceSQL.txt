@@ -21,7 +21,8 @@ mysql> show databases;
 mysql> use AddressBookService;
 Database changed
 
-mysql> create table AddressBook(FirstName varchar(75),LastName varchar(75),Address varchar(125),City varchar(75),State varchar(75),Zip int,PhoneNo int,Email varchar(75));
+mysql> create table AddressBook(FirstName varchar(75),LastName varchar(75),Address varchar(125),City varchar(75),State varchar(75),Zip int,
+                                  PhoneNo int,Email varchar(75));
 Query OK, 0 rows affected (0.06 sec)
 
 mysql> describe AddressBook;
@@ -199,3 +200,19 @@ mysql> select Type,count(Type) from AddressBook group by Type;
 | Friend |           1 |
 +--------+-------------+
 2 rows in set (0.00 sec)
+
+UC-11_Add person to both Family & Friend
+
+mysql> insert into AddressBook values("Ajay","Dhalpe","Navi Mumbai","Panvel","Mah",123455,4356789,"ajay@.com","Friend");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from AddressBook;
++-----------+----------+-------------+--------+-------+--------+----------+-------------+--------+
+| FirstName | LastName | Address     | City   | State | Zip    | PhoneNo  | Email       | Type   |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+--------+
+| Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 |  4356789 | ajay@.com   | Family |
+| Sanjay    | Dha      | Panvel      | Panvel | Mah   | 123785 |   456789 | sanjay@.com | Family |
+| vijay     | Dha      | Thane       | Thane  | Mah   | 345678 | 76894028 | vijay@.com  | Friend |
+| Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 |  4356789 | ajay@.com   | Friend |
++-----------+----------+-------------+--------+-------+--------+----------+-------------+--------+
+4 rows in set (0.00 sec)
