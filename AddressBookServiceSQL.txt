@@ -272,5 +272,70 @@ mysql> select * from person_address_type;
 +--------------+-----------+
 3 rows in set (0.00 sec)
 
+UC-13_Refactor
 
+UC-6-Refactor_Retrive contact With City or State 
 
+mysql> select * from person_contact_details inner join person_address_details on 
+       person_address_details.person_id = person_contact_details.person_id where city = "panvel";
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+| person_id | first_name | last_name | phone_no   | email          | address     | city   | state | zip    | person_id |
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+|         1 | Ajay       | Dhalpe    | 6746758478 | ajay4@gm.com   | Navi Mumbai | Panvel | Mah   |  76457 |         1 |
+|         2 | Sanjay     | Dha       | 6746758479 | sanjay4@gm.com | Panvel      | Panvel | Mah   | 785648 |         2 |
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from person_contact_details inner join person_address_details on 
+       person_address_details.person_id = person_contact_details.person_id where city = "panvel" or state = "Mah";
++-----------+------------+-----------+------------+------------------+-------------+--------+-------+---------+-----------+
+| person_id | first_name | last_name | phone_no   | email            | address     | city   | state | zip     | person_id |
++-----------+------------+-----------+------------+------------------+-------------+--------+-------+---------+-----------+
+|         1 | Ajay       | Dhalpe    | 6746758478 | ajay4@gm.com     | Navi Mumbai | Panvel | Mah   |   76457 |         1 |
+|         2 | Sanjay     | Dha       | 6746758479 | sanjay4@gm.com   | Panvel      | Panvel | Mah   |  785648 |         2 |
+|         3 | Vijay      | Dha       |  234444555 | Sanjayjfj@hf.com | Thane       | Thane  | Mah   | 7564875 |         3 |
++-----------+------------+-----------+------------+------------------+-------------+--------+-------+---------+-----------+
+3 rows in set (0.00 sec)
+
+UC-7-Refactor_Size of Addressbook With City or State
+
+mysql> select city, count(city) from person_contact_details inner join person_address_details on 
+       person_address_details.person_id = person_contact_details.person_id where city = "Panvel";
++--------+-------------+
+| city   | count(city) |
++--------+-------------+
+| Panvel |           2 |
++--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select state, count(state) from person_contact_details inner join person_address_details on 
+       person_address_details.person_id = person_contact_details.person_id where state = "Mah";
++-------+--------------+
+| state | count(state) |
++-------+--------------+
+| Mah   |            3 |
++-------+--------------+
+1 row in set (0.00 sec)
+
+UC-8-Refactor_Sorting Addressbook With City by alpha order by firstName
+
+mysql> select * from person_contact_details inner join person_address_details on 
+       person_address_details.person_id = person_contact_details.person_id where city = "Panvel" order by first_name asc;
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+| person_id | first_name | last_name | phone_no   | email          | address     | city   | state | zip    | person_id |
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+|         1 | Ajay       | Dhalpe    | 6746758478 | ajay4@gm.com   | Navi Mumbai | Panvel | Mah   |  76457 |         1 |
+|         2 | Sanjay     | Dha       | 6746758479 | sanjay4@gm.com | Panvel      | Panvel | Mah   | 785648 |         2 |
++-----------+------------+-----------+------------+----------------+-------------+--------+-------+--------+-----------+
+2 rows in set (0.00 sec)
+
+UC-10-Refactor_Count by Type 
+
+mysql> select address_type, count(address_type) from person_address_type inner join person_address_details on 
+       person_address_details.person_id = person_address_type.person_id where address_type = "family";
++--------------+---------------------+
+| address_type | count(address_type) |
++--------------+---------------------+
+| Family       |                   2 |
++--------------+---------------------+
+1 row in set (0.00 sec)
