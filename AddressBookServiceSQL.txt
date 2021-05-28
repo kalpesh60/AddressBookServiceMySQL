@@ -216,3 +216,61 @@ mysql> select * from AddressBook;
 | Ajay      | Dhalpe   | Navi Mumbai | Panvel | Mah   | 123455 |  4356789 | ajay@.com   | Friend |
 +-----------+----------+-------------+--------+-------+--------+----------+-------------+--------+
 4 rows in set (0.00 sec)
+
+UC-12_creating multiple tables
+
+create table person_contact_details(person_id int primary key not null auto_increment,first_name varchar(75),last_name varchar(75),
+                                    phone_no bigint,email varchar(75));
+
+mysql> insert into person_contact_details values(2,"Sanjay","Dha",6746758479,"sanjay4@gm.com"),(3,"Vijay","Dha",234444555,"Sanjayjfj@hf.com");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from person_contact_details;
++-----------+------------+-----------+------------+------------------+
+| person_id | first_name | last_name | phone_no   | email            |
++-----------+------------+-----------+------------+------------------+
+|         1 | Ajay       | Dhalpe    | 6746758478 | ajay4@gm.com     |
+|         2 | Sanjay     | Dha       | 6746758479 | sanjay4@gm.com   |
+|         3 | Vijay      | Dha       |  234444555 | Sanjayjfj@hf.com |
++-----------+------------+-----------+------------+------------------+
+3 rows in set (0.00 sec)
+
+
+mysql> create table person_address_details(address varchar(75),city varchar(75),state varchar(75),zip int,person_id int,foreign key (person_id) references person_contact_details(person_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into person_address_details values("Navi Mumbai","Panvel","Mah",76457,1),("Panvel","Panvel","Mah",785648,2),("Thane","Thane","Mah",7564875,3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from person_address_details;
++-------------+--------+-------+---------+-----------+
+| address     | city   | state | zip     | person_id |
++-------------+--------+-------+---------+-----------+
+| Navi Mumbai | Panvel | Mah   |   76457 |         1 |
+| Panvel      | Panvel | Mah   |  785648 |         2 |
+| Thane       | Thane  | Mah   | 7564875 |         3 |
++-------------+--------+-------+---------+-----------+
+3 rows in set (0.00 sec)
+
+
+mysql> create table person_address_type(address_type varchar(75),person_id int,foreign key (person_id) references person_contact_details(person_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into person_address_type values("Family",1),("Family",2),("Friend",3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from person_address_type;
++--------------+-----------+
+| address_type | person_id |
++--------------+-----------+
+| Family       |         1 |
+| Family       |         2 |
+| Friend       |         3 |
++--------------+-----------+
+3 rows in set (0.00 sec)
+
+
+
